@@ -19,5 +19,11 @@ namespace SalesWebMvc.Services
         {
             return _context.Seller.ToList();
         }
+
+        public void Insert(Seller obj) //metodo para salva no DB os dados do form em /Sellers/Create
+        {
+            _context.Add(obj); //insere as infos do objeto inseridas no form
+            _context.SaveChanges(); //salva as infos do objeto no DB
+        }
     }
 }
