@@ -12,6 +12,7 @@ namespace SalesWebMvc.Models
         public DateTime BirthDate { get; set; }
         public double BaseSalary { get; set; }
         public Department Department { get; set; }
+        public int DepartmentId { get; set; } //inserindo essa prop int(tipo struct nao pode ser nula,) com sufixo Id (I maiusculo) cria-se uma chave estrangeira nessa tabela no DB
         public ICollection<SalesRecord> Sales { get; set; } = new List<SalesRecord>();
 
         public Seller()
