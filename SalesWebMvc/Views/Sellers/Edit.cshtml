@@ -1,0 +1,43 @@
+﻿@model SalesWebMvc.Models.ViewModels.SellerFormViewModel;
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h4>Seller</h4>
+<hr />
+<div class="row">
+    @*class="row" garante que o div vai ocupar a largura da tela inteira*@
+    <div class="col-md-4">
+        @*Bootstrap divide a tela em 12 partes, col-md-4 usa entao 1/3 da tela e col-md-6 usa metade da tela*@
+        <form asp-action="Edit">
+            @*asp-action="Create" define que quando enviar o formulario chama-se a ação create(método post do controlador)*@
+            <input type="hidden" asp-for="Seller.Id"/>
+            <div class="form-group">
+                <label asp-for="Seller.Name" class="control-label"></label> @*tag helper asp-for="Name" label que vai aparecer na caixa para digitar*@
+                <input asp-for="Seller.Name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Seller.Email" class="control-label"></label> @*tag helper asp-for="Name" label que vai aparecer na caixa para digitar*@
+                <input asp-for="Seller.Email" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Seller.BirthDate" class="control-label"></label> @*tag helper asp-for="Name" label que vai aparecer na caixa para digitar*@
+                <input asp-for="Seller.BirthDate" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Seller.BaseSalary" class="control-label"></label> @*tag helper asp-for="Name" label que vai aparecer na caixa para digitar*@
+                <input asp-for="Seller.BaseSalary" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Seller.DepartmentId" class="control-label"></label>
+                <select asp-for="Seller.DepartmentId" asp-items="@(new SelectList(Model.Departments,"Id","Name"))" class="form-control"></select> @*asp-items - tag helper que cria uma caixa de seleção baseada em uma coleção passada*@
+            </div>                                                            @* Fonte dos dados,"chave", atributo que aparece na caixinha*@
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
