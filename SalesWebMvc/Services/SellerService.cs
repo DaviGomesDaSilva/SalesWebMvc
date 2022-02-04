@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace SalesWebMvc.Services
 {
@@ -26,22 +27,17 @@ namespace SalesWebMvc.Services
             _context.Add(obj); //insere as infos do objeto inseridas no form
             _context.SaveChanges(); //salva as infos do objeto no DB
         }
-                
+
         public Seller FindById(int id)
         {
-            return  _context.Seller.FirstOrDefault(obj => obj.Id == id);
+            return _context.Seller.Include(obj => obj.Department).FirstOrDefault(obj => obj.Id == id); //eager loading - carregar outros objetos associado ao objeto principal
         }
-        
+
         public void Remove(int id)
         {
             var obj = _context.Seller.Find(id);
             _context.Seller.Remove(obj);
             _context.SaveChanges();
         }
-
-        //internal object FindById(int? id)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }
