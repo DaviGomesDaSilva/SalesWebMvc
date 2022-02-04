@@ -26,5 +26,22 @@ namespace SalesWebMvc.Services
             _context.Add(obj); //insere as infos do objeto inseridas no form
             _context.SaveChanges(); //salva as infos do objeto no DB
         }
+                
+        public Seller FindById(int id)
+        {
+            return  _context.Seller.FirstOrDefault(obj => obj.Id == id);
+        }
+        
+        public void Remove(int id)
+        {
+            var obj = _context.Seller.Find(id);
+            _context.Seller.Remove(obj);
+            _context.SaveChanges();
+        }
+
+        //internal object FindById(int? id)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
